@@ -19,6 +19,9 @@ load_dotenv()
 
 # Initialize FastAPI
 app = FastAPI()
+@app.get("/")
+def root():
+    return {"status": "✅ FastAPI backend is running on Render"}
 
 app.add_middleware(
     CORSMiddleware,
@@ -27,7 +30,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-dup_counter = DuplicationCounter("C:/Users/user/Downloads/Fake-news-detection-reddit/backend/data/Fakeddit-dataset-final.csv")
+dup_counter = DuplicationCounter("data/Fakeddit-dataset-final.csv")
 region2id = joblib.load("model/region2id.pkl")
 # Setup Reddit API
 reddit = praw.Reddit(
