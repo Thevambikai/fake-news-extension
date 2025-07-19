@@ -132,3 +132,7 @@ def analyze_post(data: PostRequest):
         print("🚨 Exception during analysis:")
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # fallback to 8000 if not set
+    uvicorn.run("app:app", host="0.0.0.0", port=port)
